@@ -24,219 +24,536 @@
        </div>
      </div>  
 
-
-     <div class="card bg-base-100 image-full w-80 shadow-sm">
-       <figure>
-         <img
-           src="https://www.cleanipedia.com/images/00d1hxgfwfa6/zZ5STNHfs2YwpSDLjMtB5/ec7b1e33ebc12c3baf6c87babd611a5e/R2V0dHlJbWFnZXMtMTIwNTc4MzUwMS5qcGc/1200w/uma-rede-de-limpeza-de-piscina-dentro-da-%C3%A1gua-ao-lado-da-borda-da-piscina..jpg"
-           alt="Limpeza" />
-       </figure>
-       <div class="card-body">
-         <h2 class="card-title">Limpeza</h2>
-         <p> Cuidamos da aspiração, controle do pH e aplicação de produtos com praticidade.</p>
-         <div class="card-actions justify-end">
-           <button class="btn btn-primary">nos</button>
-         </div>
-       </div>
-     </div>
-
-
-     <div class="card bg-base-100 w-80 shadow-sm">
-       <figure class="px-10 pt-10">
-         <img
-           src="https://a-static.mlcdn.com.br/800x600/kit-4-refletores-led-9w-rgb-inox-s-para-iluminacao-piscina-hidraled/brightpool/k4rfhmsi9/0177043ccf3a0f3bb936fc3bb18c58af.jpeg"
-           alt="Iluminação"
-           class="rounded-xl" />
-       </figure>
-       <div class="card-body items-center text-center">
-         <h2 class="card-title">Iluminação</h2>
-         <p>Instalação de luzes subaquáticas personalizadas para valorizar sua área de lazer à noite.</p>
-         <div class="card-actions">
-           <button class="btn btn-primary">agora</button>
-         </div>
-       </div>
-     </div>
-
-
-
-
- </section>
 <!DOCTYPE html>
 <html lang="pt-BR" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projeto Módulo 3</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet">
+
+  <!-- Tailwind CSS & DaisyUI -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5/daisyui.css" rel="stylesheet" type="text/css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
-<body>
+
+<body class="bg-base-100">
+
   <!-- SEÇÃO: HEADER (responsável: integrante A) -->
-  
-  
+  <header class="sticky top-0 z-50">
+    <div class="navbar min-h-14 bg-[#263B7A] text-white px-4 md:px-8 lg:px-16 shadow-md">
 
-  <header>
-    <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet">
-    <div class="navbar bg-[#263B7A] text-white px-6 md:px-12 lg:px-20">
+      <!-- LOGO -->
+      <div class="navbar-start">
+        <a href="#" class="flex flex-col items-center leading-none">
+          <span class="text-base md:text-lg font-bold tracking-wider">
+            DURSMGEO
+          </span>
+          <span class="text-[6px] md:text-[7px] uppercase tracking-[0.3em] mt-1">
+            Piscinas de qualidade
+          </span>
+        </a>
+      </div>
 
-        <!-- LOGO -->
-        <div class="navbar-start">
-            <a href="#" class="flex flex-col items-center">
-                <span class="text-2xl md:text-3xl font-bold tracking-wider">
-                    DURSMGEO
-                </span>
-
-                <span class="text-[7px] md:text-[8px] uppercase tracking-[0.3em]">
-                    Piscinas de qualidade
-                </span>
+      <!-- MENU DESKTOP -->
+      <div class="navbar-end hidden md:flex">
+        <ul class="menu menu-horizontal items-center gap-0">
+          <li>
+            <a href="#" class="text-white hover:bg-white/10" aria-label="WhatsApp">
+              <svg xmlns="http://www.w3.org/2000/svg"
+                   width="17"
+                   height="17"
+                   viewBox="0 0 24 24"
+                   fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.149-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.372-.01-.57-.01-.198 0-.52.075-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+              </svg>
             </a>
+          </li>
+
+          <li>
+            <a href="#" class="text-white hover:bg-white/10" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg"
+                   width="17"
+                   height="17"
+                   viewBox="0 0 24 24"
+                   fill="none"
+                   stroke="currentColor"
+                   stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="5"/>
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+              </svg>
+            </a>
+          </li>
+
+          <li><a href="#sobre" class="text-[10px] font-medium text-white hover:bg-white/10">SOBRE</a></li>
+          <li><a href="#piscinas" class="text-[10px] font-medium text-white hover:bg-white/10">NOSSAS PICINAS</a></li>
+          <li><a href="#orcamentos" class="text-[10px] font-medium text-white hover:bg-white/10">ORÇAMENTO</a></li>
+          <li><a href="#garantia" class="text-[10px] font-medium text-white hover:bg-white/10">GARANTIAS</a></li>
+          <li><a href="#contatos" class="text-[10px] font-medium text-white hover:bg-white/10">FORMAS DE CONTATO</a></li>
+        </ul>
+      </div>
+
+      <!-- MENU MOBILE -->
+      <div class="navbar-end md:hidden">
+        <div class="dropdown dropdown-end">
+          <button tabindex="0" class="btn btn-ghost btn-sm text-white hover:bg-white/10">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 class="h-5 w-5"
+                 fill="none"
+                 viewBox="0 0 24 24"
+                 stroke="currentColor">
+              <path stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+
+          <ul tabindex="0"
+              class="menu menu-sm dropdown-content z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 text-base-content shadow-lg">
+            <li><a href="#sobre">SOBRE</a></li>
+            <li><a href="#piscinas">PISCINAS</a></li>
+            <li><a href="#orcamentos">ORÇAMENTOS</a></li>
+            <li><a href="#garantia">GARANTIA</a></li>
+            <li><a href="#contatos">CONTATOS</a></li>
+          </ul>
         </div>
-
-        <!-- MENU DESKTOP -->
-        <div class="navbar-end hidden md:flex">
-
-            <ul class="menu menu-horizontal items-center gap-1">
-
-                <!-- WHATSAPP -->
-                <li>
-                    <a href="#"
-                       class="text-white hover:bg-white/10"
-                       aria-label="WhatsApp">
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                             width="20"
-                             height="20"
-                             viewBox="0 0 24 24"
-                             fill="currentColor">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.149-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.372-.01-.57-.01-.198 0-.52.075-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-                        </svg>
-                    </a>
-                </li>
-
-                <!-- INSTAGRAM -->
-                <li>
-                    <a href="#"
-                       class="text-white hover:bg-white/10"
-                       aria-label="Instagram">
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                             width="20"
-                             height="20"
-                             viewBox="0 0 24 24"
-                             fill="none"
-                             stroke="currentColor"
-                             stroke-width="2">
-                            <rect x="3" y="3" width="18" height="18" rx="5"/>
-                            <circle cx="12" cy="12" r="4"/>
-                            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
-                        </svg>
-                    </a>
-                </li>
-
-                <!-- LINKS -->
-                <li>
-                    <a href="#sobre"
-                       class="text-[11px] font-medium text-white hover:bg-white/10">
-                        SOBRE
-                    </a>
-                </li>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Projeto Módulo 3</title>
-
-    <!-- Tailwind CSS -->
-<header>
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <link
-        href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css"
-        rel="stylesheet"
-    >
-</head>
-
-<body>
-
-    <!-- SEÇÃO: HEADER (responsável: integrante A) -->
-
-    <!-- SEÇÃO: HERO (responsável: integrante B) -->
-
-    <!-- SEÇÃO: CARDS (responsável: integrante C) -->
-
-    <!-- SEÇÃO: FAQ (responsável: integrante D) -->
-
-    <!-- SEÇÃO: FOOTER (responsável: integrante E) -->
+      </div>
 
     </div>
-</header>
+  </header>
 
   <!-- SEÇÃO: HERO (responsável: integrante B) -->
+  <section id="sobre">
+    <div
+      class="hero min-h-[420px] md:min-h-[500px]"
+      style="background-image: url('https://cdn.pixabay.com/photo/2016/11/22/21/43/woman-1850709_1280.jpg');"
+    >
+      <div class="hero-overlay bg-black/40"></div>
+
+      <div class="hero-content text-neutral-content justify-start w-full px-8 md:px-16 lg:px-24">
+        <div class="max-w-xl flex flex-col items-start text-left">
+
+          <h1 class="mb-4 text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+            experiência no DNA na fabricação de piscinas de fibra
+          </h1>
+
+          <p class="mb-5 text-xs md:text-sm leading-relaxed text-gray-200 max-w-lg">
+            Uma nova marca que já nasce com 25 anos de história para contar.
+            A Nobre Piscinas possui em seu DNA a experiência de produzir piscinas de fibra de vidro.
+          </p>
+
+          <div class="flex flex-wrap gap-3">
+            <a href="#sobre"
+               class="btn btn-primary btn-sm rounded-md text-white px-5">
+              Conheça nossa história
+            </a>
+
+            <a href="#piscinas"
+               class="btn btn-outline btn-sm bg-white hover:bg-gray-100 text-neutral rounded-md px-5 border-none">
+              Ver piscinas
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- SEÇÃO: CARDS (responsável: integrante C) -->
-  <!-- SEÇÃO: FAQ (responsável: integrante D) -->
+  <section id="piscinas" class="bg-base-100 py-12 md:py-16 px-4">
+    <div class="max-w-6xl mx-auto">
+
+      <div class="grid grid-cols-1 md:grid-cols-[1.2fr_1fr] gap-6 md:gap-10 items-end mb-8">
+        <div>
+          <span class="text-[10px] uppercase tracking-widest text-[#263B7A] font-semibold">
+            Nossas piscinas
+          </span>
+          <h2 class="text-2xl md:text-3xl font-bold leading-tight mt-2">
+            Escolha o melhor formato<br class="hidden md:block">
+            para o seu espaço
+          </h2>
+        </div>
+
+        <p class="text-xs md:text-sm text-base-content/60 leading-relaxed max-w-md">
+          Encontre modelos pensados para diferentes espaços e projetos.
+          Conheça algumas das nossas opções e escolha a piscina que combina com você.
+        </p>
+      </div>
+
+      <!-- Cards extras para aproximar do layout da referência -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+
+        <div class="card bg-base-100 border border-base-200 shadow-sm">
+          <figure class="h-28 overflow-hidden">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTztNnpq8l9HXic_huwSqRHkhKp4gSeHk01p0WevMfMRHxoZpqoFswCQfU&s=10"
+                 alt="Instalação"
+                 class="w-full h-full object-cover">
+          </figure>
+          <div class="card-body p-3 gap-1">
+            <h3 class="text-xs font-bold">Linha Clássica</h3>
+            <p class="text-[9px] text-base-content/60">Modelos para diferentes espaços.</p>
+          </div>
+        </div>
+
+        <div class="card bg-base-100 border border-base-200 shadow-sm">
+          <figure class="h-28 overflow-hidden">
+            <img src="https://www.cleanipedia.com/images/00d1hxgfwfa6/zZ5STNHfs2YwpSDLjMtB5/ec7b1e33ebc12c3baf6c87babd611a5e/R2V0dHlJbWFnZXMtMTIwNTc4MzUwMS5qcGc/1200w/uma-rede-de-limpeza-de-piscina-dentro-da-%C3%A1gua-ao-lado-da-borda-da-piscina..jpg"
+                 alt="Limpeza"
+                 class="w-full h-full object-cover">
+          </figure>
+          <div class="card-body p-3 gap-1">
+            <h3 class="text-xs font-bold">Linha Compacta</h3>
+            <p class="text-[9px] text-base-content/60">Praticidade para áreas menores.</p>
+          </div>
+        </div>
+
+        <div class="card bg-base-100 border border-base-200 shadow-sm">
+          <figure class="h-28 overflow-hidden">
+            <img src="https://cdn.pixabay.com/photo/2016/11/22/21/43/woman-1850709_1280.jpg"
+                 alt="Piscina"
+                 class="w-full h-full object-cover">
+          </figure>
+          <div class="card-body p-3 gap-1">
+            <h3 class="text-xs font-bold">Linha Família</h3>
+            <p class="text-[9px] text-base-content/60">Mais espaço para aproveitar.</p>
+          </div>
+        </div>
+
+        <div class="card bg-base-100 border border-base-200 shadow-sm">
+          <figure class="h-28 overflow-hidden">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTztNnpq8l9HXic_huwSqRHkhKp4gSeHk01p0WevMfMRHxoZpqoFswCQfU&s=10"
+                 alt="Piscina de fibra"
+                 class="w-full h-full object-cover">
+          </figure>
+          <div class="card-body p-3 gap-1">
+            <h3 class="text-xs font-bold">Linha Spa</h3>
+            <p class="text-[9px] text-base-content/60">Conforto e acabamento.</p>
+          </div>
+        </div>
+
+        <div class="card bg-base-100 border border-base-200 shadow-sm">
+          <figure class="h-28 overflow-hidden">
+            <img src="https://www.cleanipedia.com/images/00d1hxgfwfa6/zZ5STNHfs2YwpSDLjMtB5/ec7b1e33ebc12c3baf6c87babd611a5e/R2V0dHlJbWFnZXMtMTIwNTc4MzUwMS5qcGc/1200w/uma-rede-de-limpeza-de-piscina-dentro-da-%C3%A1gua-ao-lado-da-borda-da-piscina..jpg"
+                 alt="Piscina e manutenção"
+                 class="w-full h-full object-cover">
+          </figure>
+          <div class="card-body p-3 gap-1">
+            <h3 class="text-xs font-bold">Linha Premium</h3>
+            <p class="text-[9px] text-base-content/60">Qualidade e estilo.</p>
+          </div>
+        </div>
+
+        <div class="card bg-base-100 border border-base-200 shadow-sm">
+          <figure class="h-28 overflow-hidden">
+            <img src="https://cdn.pixabay.com/photo/2016/11/22/21/43/woman-1850709_1280.jpg"
+                 alt="Piscina de fibra de vidro"
+                 class="w-full h-full object-cover">
+          </figure>
+          <div class="card-body p-3 gap-1">
+            <h3 class="text-xs font-bold">Linha Exclusiva</h3>
+            <p class="text-[9px] text-base-content/60">Projetos personalizados.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Serviços originais -->
+      <div class="mt-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-8">
+          Conheça nossos serviços
+        </h2>
+
+        <div class="flex flex-wrap gap-6 justify-center">
+
+          <div class="card bg-base-100 w-80 shadow-sm border border-base-200">
+            <figure>
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTztNnpq8l9HXic_huwSqRHkhKp4gSeHk01p0WevMfMRHxoZpqoFswCQfU&s=10"
+                alt="Instalação"
+                class="h-48 w-full object-cover"
+              />
+            </figure>
+
+            <div class="card-body">
+              <h2 class="card-title">Instalação</h2>
+              <p>
+                Instalamos sua piscina com rapidez, segurança e acabamento completo para o seu quintal.
+              </p>
+              <div class="card-actions justify-end">
+                <button class="btn btn-primary">Contrate</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card bg-base-100 image-full w-80 shadow-sm">
+            <figure>
+              <img
+                src="https://www.cleanipedia.com/images/00d1hxgfwfa6/zZ5STNHfs2YwpSDLjMtB5/ec7b1e33ebc12c3baf6c87babd611a5e/R2V0dHlJbWFnZXMtMTIwNTc4MzUwMS5qcGc/1200w/uma-rede-de-limpeza-de-piscina-dentro-da-%C3%A1gua-ao-lado-da-borda-da-piscina..jpg"
+                alt="Limpeza"
+                class="h-48 w-full object-cover"
+              />
+            </figure>
+
+            <div class="card-body">
+              <h2 class="card-title">Limpeza</h2>
+              <p>
+                Cuidamos da aspiração, controle do pH e aplicação de produtos com praticidade.
+              </p>
+              <div class="card-actions justify-end">
+                <button class="btn btn-primary">nos</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FAIXA DE CONTATO -->
+  <section class="bg-[#263B7A] text-white">
+    <div class="max-w-6xl mx-auto px-6 py-7 flex flex-col md:flex-row items-center justify-between gap-5">
+
+      <div class="flex items-center gap-4">
+        <div class="w-10 h-10 rounded-full border border-white/40 flex items-center justify-center">
+          <i class="fa-brands fa-whatsapp"></i>
+        </div>
+
+        <div>
+          <h3 class="font-semibold text-sm">
+            Ficou com dúvida ou podemos te ajudar de outra forma?
+          </h3>
+          <p class="text-xs text-white/60 mt-1">
+            Entre em contato com nossa equipe.
+          </p>
+        </div>
+      </div>
+
+      <a href="#orcamentos" class="btn btn-primary btn-sm rounded-none">
+        FALE CONOSCO
+      </a>
+
+    </div>
+  </section>
+
+  <!-- SOBRE / HISTÓRIA -->
+  <section class="py-16 px-6 bg-base-100">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+
+      <div>
+        <span class="text-[10px] uppercase tracking-widest text-[#263B7A] font-semibold">
+          Nossa história
+        </span>
+
+        <h2 class="text-2xl md:text-3xl font-bold mt-2 mb-5">
+          São mais de 25 anos de história produzindo piscinas
+        </h2>
+
+        <p class="text-sm text-base-content/60 leading-relaxed mb-4">
+          Uma nova marca que já nasce com 25 anos de história para contar.
+          A Nobre Piscinas possui em seu DNA a experiência de produzir piscinas de fibra de vidro.
+        </p>
+
+        <p class="text-sm text-base-content/60 leading-relaxed mb-6">
+          Nossa experiência acompanha cada etapa, desde a escolha do modelo até a instalação e o atendimento ao cliente.
+        </p>
+
+        <a href="#contatos" class="btn btn-outline btn-primary btn-sm">
+          CONHEÇA NOSSA HISTÓRIA
+        </a>
+      </div>
+
+      <div class="flex justify-center md:justify-end">
+        <img
+          src="https://cdn.pixabay.com/photo/2016/11/22/21/43/woman-1850709_1280.jpg"
+          alt="Piscina de fibra"
+          class="w-full max-w-md h-64 object-cover rounded-none shadow-sm"
+        >
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ORÇAMENTO -->
+  <section id="orcamentos" class="bg-base-200 py-12 px-6">
+    <div class="max-w-sm mx-auto">
+
+      <div class="card bg-[#263B7A] text-white rounded-sm shadow-lg">
+        <div class="card-body p-7">
+
+          <h2 class="text-2xl font-bold text-center">
+            Solicite seu orçamento
+          </h2>
+
+          <p class="text-xs text-center text-white/70 mb-2">
+            Preencha o formulário e nossa equipe entrará em contato.
+          </p>
+
+          <fieldset class="fieldset">
+            <label class="fieldset-label text-white">Nome</label>
+            <input type="text" class="input input-sm w-full bg-white/10 border-white/20 text-white placeholder:text-white/40" placeholder="Seu nome">
+          </fieldset>
+
+          <fieldset class="fieldset">
+            <label class="fieldset-label text-white">Telefone</label>
+            <input type="tel" class="input input-sm w-full bg-white/10 border-white/20 text-white placeholder:text-white/40" placeholder="Seu telefone">
+          </fieldset>
+
+          <fieldset class="fieldset">
+            <label class="fieldset-label text-white">E-mail</label>
+            <input type="email" class="input input-sm w-full bg-white/10 border-white/20 text-white placeholder:text-white/40" placeholder="Seu e-mail">
+          </fieldset>
+
+          <fieldset class="fieldset">
+            <label class="fieldset-label text-white">CEP</label>
+            <input type="text" class="input input-sm w-full bg-white/10 border-white/20 text-white placeholder:text-white/40" placeholder="Seu CEP">
+          </fieldset>
+
+          <button class="btn btn-primary btn-sm mt-3 w-full">
+            SOLICITAR ORÇAMENTO
+          </button>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
 
   <!-- SEÇÃO: FAQ (responsável: integrante D) -->
-<!-- SEÇÃO: FAQ (responsável: integrante D) -->
-<section class="py-16 max-w-3xl mx-auto px-4">
-    <h2 class="text-3xl font-bold mb-8 text-center">Perguntas Frequentes</h2>
-  
+  <section class="py-16 max-w-3xl mx-auto px-4">
+    <h2 class="text-3xl font-bold mb-8 text-center">
+      Perguntas Frequentes
+    </h2>
+
     <div class="collapse collapse-arrow bg-base-200 mb-3">
       <input type="radio" name="faq-accordion" checked="checked" />
       <div class="collapse-title text-lg font-medium">
         Quanto tempo demora para instalar uma piscina em casa?
       </div>
       <div class="collapse-content">
-        <p>O tempo médio de instalação varia de 7 a 15 dias úteis, dependendo do modelo escolhido (fibra, vinil ou alvenaria) e das condições da escavação e do solo.</p>
+        <p>
+          O prazo depende das condições do terreno e do projeto escolhido.
+        </p>
       </div>
     </div>
-  
-    <div class="collapse collapse-arrow bg-base-200 mb-3">
-      <input type="radio" name="faq-accordion" />
-      <div class="collapse-title text-lg font-medium">
-        Com que frequência devo realizar a manutenção e o tratamento da água?
-      </div>
-      <div class="collapse-content">
-        <p>A filtragem deve rodar diariamente no automático. A medição de pH, aplicação de cloro e a limpeza da borda e aspiração devem ser feitas de 1 a 2 vezes por semana.</p>
-      </div>
-    </div>
-  
-    <div class="collapse collapse-arrow bg-base-200 mb-3">
-      <input type="radio" name="faq-accordion" />
-      <div class="collapse-title text-lg font-medium">
-        Vocês oferecem garantia na estrutura da piscina e nos equipamentos?
-      </div>
-      <div class="collapse-content">
-        <p>Sim! Oferecemos garantia de até 10 anos para o casco/estrutura da piscina e 1 ano de garantia nos equipamentos como bombas, filtros e sistemas de iluminação LED.</p>
-      </div>
-    </div>
-  
+
     <div class="collapse collapse-arrow bg-base-200 mb-3">
       <input type="radio" name="faq-accordion" />
       <div class="collapse-title text-lg font-medium">
         É possível instalar aquecimento solar em uma piscina já construída?
       </div>
       <div class="collapse-content">
-        <p>Sim! Fazemos a adequação técnica necessária na tubulação para instalar placas solares, bombas de calor ou aquecedores elétricos em piscinas já prontas.</p>
+        <p>
+          Sim! Fazemos a adequação técnica necessária na tubulação para instalar placas solares,
+          bombas de calor ou aquecedores elétricos em piscinas já prontas.
+        </p>
       </div>
     </div>
-  
+
     <div class="collapse collapse-arrow bg-base-200 mb-3">
       <input type="radio" name="faq-accordion" />
       <div class="collapse-title text-lg font-medium">
         Como funciona o processo de orçamento e visita técnica?
       </div>
       <div class="collapse-content">
-        <p>Você solicita o orçamento pelo nosso site ou WhatsApp, e um especialista realiza uma visita técnica gratuita ao seu terreno para avaliar o espaço e orientar o melhor projeto.</p>
+        <p>
+          Você solicita o orçamento pelo nosso site ou WhatsApp, e um especialista realiza
+          uma visita técnica gratuita ao seu terreno para avaliar o espaço e orientar o melhor projeto.
+        </p>
       </div>
     </div>
   </section>
+
+  <!-- GARANTIA -->
+  <section id="garantia" class="bg-base-200 py-12 px-6">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-4">Garantia e qualidade</h2>
+      <p class="text-sm text-base-content/60">
+        Trabalhamos para oferecer piscinas de qualidade, instalação segura e atendimento próximo ao cliente.
+      </p>
+    </div>
+  </section>
+
   <!-- SEÇÃO: FOOTER (responsável: integrante E) -->
-</body>
-</html>
+  <footer id="contatos" class="bg-[#1E3A8A] text-white">
+    <div class="max-w-6xl mx-auto px-6 py-10">
 
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 border-b border-white/30 pb-8">
 
+        <!-- Descrição + Contatos -->
+        <div>
+          <p class="text-xs leading-relaxed mb-5">
+            A Nobre Piscinas é especialista em fazer piscinas de qualidade e proporcionar o melhor atendimento aos seus clientes. Vamos conversar?
+          </p>
 
+          <h3 class="text-xs text-white/60 mb-2">
+            Nossos contatos
+          </h3>
 
+          <p class="text-xs mb-1">
+            +55 84 9 9945-5686 | +55 84 3564-6986
+          </p>
+
+          <p class="text-xs">
+            atendimento@nobrepiscinas.com.br
+          </p>
+        </div>
+
+        <!-- Endereço -->
+        <div>
+          <h3 class="text-xs text-white/60 mb-1">
+            Endereço
+          </h3>
+
+          <p class="text-xs">
+            Rua das Flores, Capim Macio, Natal / RN
+          </p>
+
+          <p class="text-xs">
+            CEP: 59105-100
+          </p>
+        </div>
+
+        <!-- Redes sociais -->
+        <div>
+          <h3 class="text-xs text-white/60 mb-3">
+            Nossas mídias
+          </h3>
+
+          <div class="flex gap-4">
+            <a href="https://www.instagram.com/"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="Instagram"
+               class="hover:opacity-70 transition">
+              <i class="fa-brands fa-instagram text-lg"></i>
+            </a>
+
+            <a href="https://wa.me/5584999455686"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="WhatsApp"
+               class="hover:opacity-70 transition">
+              <i class="fa-brands fa-whatsapp text-lg"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="text-center pt-6">
+        <div class="text-3xl font-bold italic opacity-80">
+          N
+        </div>
+      </div>
+
+    </div>
+  </footer>
 
 </body>
 </html>
