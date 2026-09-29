@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - AgênciaWeb</title>
+
+    <!-- DaisyUI + Tailwind -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="min-h-screen bg-base-200">
+
+    <div class="drawer lg:drawer-open">
+
+        <input id="menu-drawer" type="checkbox" class="drawer-toggle" />
+
+        <div class="drawer-content flex flex-col">
+
+            <!-- HEADER (Pessoa 1) -->
+            <header class="navbar bg-base-100 border-b border-base-300 px-4 lg:px-8">
+                <div class="flex-none lg:hidden">
+                    <label for="menu-drawer" class="btn btn-square btn-ghost">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </label>
+                </div>
+
+                <div class="flex-1">
+                    <h2 class="text-xl font-bold">Dashboard</h2>
+                </div>
+
+                <div class="flex-none">
+                    <div class="dropdown dropdown-end">
+                        <button class="btn btn-ghost btn-circle avatar">
+                            <div class="w-10 rounded-full bg-primary text-primary-content flex items-center justify-center">
+                                <span class="font-bold">U</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+
+            <!-- CONTEÚDO / CORPO DO DASHBOARD (Pessoa 2) -->
+            <main class="p-6 lg:p-8 flex-1">
+
+                <!-- BANNER -->
+                <div class="h-[215px] w-full rounded-xl mb-8 bg-cover bg-center" style="background-image: url('img/banner.png');">
+                </div>
+
+                <!-- TÍTULO DOS PRODUTOS -->
+                <div class="mb-5">
+                    <h2 class="text-2xl font-bold">
+                        Compre pontos e distribua como quiser
+                    </h2>
+                    <p class="text-gray-500 mt-1">
+                        Escolha um produto para começar seu projeto.
+                    </p>
+                </div>
+
+                <!-- CARDS DOS PRODUTOS -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+                    <!-- CARD 1 -->
+                    <div class="card bg-base-100 border border-base-300 shadow-sm">
+                        <figure class="p-4 pb-2">
+                            <div class="bg-neutral rounded-xl h-[95px] w-full flex items-center justify-center">
+                                <span class="text-xl font-bold text-white">
+                                    Design de App<span class="text-info">_</span>
+                                </span>
+                            </div>
+                        </figure>
+
+                        <div class="card-body p-4 pt-2">
+                            <div>
+                                <div class="badge text-xs bg-[#104F98] text-white border-none">
+                                    CUPOM DISPONÍVEL
+                                </div>
+                            </div>
+
+                            <h2 class="card-title text-base">Design de App</h2>
+
+                            <p class="text-gray-500 text-sm">
+                                Desenvolvimento, consultoria ou UX/UI para seus projetos decolar.
+                            </p>
+
+                            <div class="mt-3">
+                                <p class="font-bold text-sm">Comprar créditos</p>
+                                <p class="text-gray-500 text-sm">5 créditos por R$10.000,00</p>
+                            </div>
+
+                            <!-- INTEGRAÇÃO 1: BOTÃO DO CARD APONTA PARA COMPRA.HTML -->
+                            <div class="card-actions justify-end mt-3">
+                                <a href="compra.html" class="btn btn-sm bg-[#1764BD] hover:bg-[#104F98] text-white border-none shadow-md">
+                                    Comprar →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CARD 2 -->
+                    <div class="card bg-base-100 border border-base-300 shadow-sm">
+                        <figure class="p-4 pb-2">
+                            <div class="bg-neutral rounded-xl h-[95px] w-full flex items-center justify-center">
+                                <span class="text-xl font-bold text-white">
+                                    Sistemas PDV<span class="text-info">_</span>
+                                </span>
+                            </div>
+                        </figure>
+
+                        <div class="card-body p-4 pt-2">
+                            <h2 class="card-title text-base">Sistemas PDV</h2>
+
+                            <p class="text-gray-500 text-sm">
+                                Desenvolvimento de projeto de ponta a ponta, com nível de complexidade média.
+                            </p>
+
+                            <div class="mt-3">
+                                <p class="font-bold text-sm">Comprar créditos</p>
+                                <p class="text-gray-500 text-sm">21 créditos por R$120.000,00</p>
+                            </div>
+
+                            <!-- INTEGRAÇÃO 1: BOTÃO DO CARD APONTA PARA COMPRA.HTML -->
+                            <div class="card-actions justify-end mt-3">
+                                <a href="compra.html" class="btn btn-sm bg-[#1764BD] hover:bg-[#104F98] text-white border-none shadow-md">
+                                    Comprar →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CARD 3 -->
+                    <div class="card bg-base-100 border border-base-300 shadow-sm">
+                        <figure class="p-4 pb-2">
+                            <div class="bg-neutral rounded-xl h-[95px] w-full flex items-center justify-center">
+                                <span class="text-xl font-bold text-white">
+                                    Sites Wordpress<span class="text-info">_</span>
+                                </span>
+                            </div>
+                        </figure>
+
+                        <div class="card-body p-4 pt-2">
+                            <h2 class="card-title text-base">Sites Wordpress</h2>
+
+                            <p class="text-gray-500 text-sm">
+                                Descontos cumulativos para projetos em Wordpress para 2025.
+                            </p>
+
+                            <div class="mt-3">
+                                <p class="font-bold text-sm">Comprar créditos</p>
+                                <p class="text-gray-500 text-sm">21 créditos por R$12.000,00</p>
+                            </div>
+
+                            <!-- INTEGRAÇÃO 1: BOTÃO DO CARD APONTA PARA COMPRA.HTML -->
+                            <div class="card-actions justify-end mt-3">
+                                <a href="compra.html" class="btn btn-sm bg-[#1764BD] hover:bg-[#104F98] text-white border-none shadow-md">
+                                    Comprar →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </main>
+
+        </div>
+
+        <!-- MENU LATERAL / SIDEBAR (Pessoa 1) -->
+        <div class="drawer-side">
+            <label for="menu-drawer" class="drawer-overlay"></label>
+
+            <aside class="min-h-full w-72 bg-base-100 border-r border-base-300">
+                <div class="flex h-20 items-center border-b border-base-300 px-6">
+                    <a href="index.html" class="text-2xl font-bold text-primary">
+                        AgênciaWeb
+                    </a>
+                </div>
+
+                <nav class="p-4">
+                    <p class="mb-2 px-4 text-xs font-semibold uppercase text-base-content/50">
+                        Menu
+                    </p>
+
+                    <ul class="menu w-full gap-1">
+                        <li>
+                            <a href="index.html" class="active font-bold text-[#104F98]">
+                                Dashboard
+                            </a>
+                        </li>
+
+                        <!-- INTEGRAÇÃO 2: LINK DO MENU LATERAL APONTA PARA COMPRA.HTML -->
+                        <li>
+                            <a href="compra.html" class="text-gray-600">
+                                Compra de créditos
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
