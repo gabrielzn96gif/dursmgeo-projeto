@@ -3,23 +3,60 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Compra de créditos - AgênciaWeb</title>
-  
+  <title>AgênciaWeb - Painel do Cliente & Compra de Créditos</title>
+
   <!-- Tailwind CSS & DaisyUI via CDN -->
   <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
   <script src="https://cdn.tailwindcss.com"></script>
-  
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
   <!-- Ícones FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Chart.js para gráficos interativos -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    /* Dynamic active navigation highlighting */
+    .nav-item-active {
+      background-color: #eff6ff;
+      color: #2563eb;
+      font-weight: 600;
+      border-right: 3px solid #2563eb;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+  </style>
 </head>
-<body class="bg-gray-100 min-h-screen text-slate-700 font-sans flex flex-col">
+<body class="bg-slate-100 min-h-screen text-slate-700 flex flex-col antialiased">
 
   <!-- Header / Topbar -->
-  <header class="bg-white border-b border-slate-200 px-6 py-3 flex items-center justify-between sticky top-0 z-50">
+  <header class="bg-white border-b border-slate-200 px-4 md:px-6 py-3 flex items-center justify-between sticky top-0 z-40 shadow-sm">
     <div class="flex items-center gap-3">
-      <!-- Logo AgênciaWeb em SVG Inline -->
-      <div class="flex items-center justify-center">
-        <svg width="210" height="36" viewBox="0 0 210 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Botão Menu Mobile -->
+      <button id="mobile-menu-btn" class="btn btn-ghost btn-square btn-sm lg:hidden text-slate-600" aria-label="Abrir Menu">
+        <i class="fa-solid fa-bars text-lg"></i>
+      </button>
+
+      <!-- Logo AgênciaWeb SVG -->
+      <a href="#" onclick="navigateTo('dashboard'); return false;" class="flex items-center justify-center hover:opacity-90 transition-opacity">
+        <svg width="190" height="34" viewBox="0 0 210 36" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M74.3732 17.1847L80.719 0.454943H83.9802L90.326 17.1863H86.8146L85.3591 12.9464H79.1384L77.6829 17.1863H74.3732V17.1847ZM80.0171 10.3371H84.457L82.2496 3.84123L80.0171 10.3371Z" fill="#4F4F4F"/>
           <path d="M92.0816 21.2745L93.4105 19.092C94.2969 19.6939 95.4429 19.9957 96.8468 19.9957C97.616 19.9957 98.2601 19.758 98.7776 19.2812C99.2951 18.8044 99.5546 18.1556 99.5546 17.3379V16.0591C99.1528 16.3764 98.7135 16.6453 98.2382 16.8611C97.7614 17.0784 97.1298 17.1878 96.345 17.1878C95.224 17.1878 94.2594 16.9408 93.448 16.4483C92.6366 15.9559 92.0175 15.2774 91.5923 14.4159C91.1655 13.5545 90.9529 12.5727 90.9529 11.469C90.9529 10.298 91.2249 9.23646 91.7674 8.28279C92.3099 7.32913 93.0806 6.57245 94.0749 6.01276C95.0692 5.45307 96.2449 5.17167 97.5988 5.17167C98.6181 5.17167 99.564 5.25609 100.433 5.42181C101.302 5.58909 101.997 5.76419 102.516 5.94867V17.3864C102.516 18.4729 102.273 19.4016 101.789 20.1707C101.304 20.9399 100.638 21.5215 99.7938 21.9139C98.9496 22.3063 97.9834 22.5033 96.8968 22.5033C95.6758 22.5033 94.7065 22.3939 93.9874 22.1766C93.2698 21.9593 92.6335 21.6591 92.0816 21.2745ZM99.5577 12.1928V7.9795C99.3232 7.89664 99.0809 7.83254 98.8307 7.79189C98.5806 7.74968 98.1866 7.72936 97.652 7.72936C96.8499 7.72936 96.1761 7.90133 95.6321 8.24371C95.088 8.58609 94.6753 9.03322 94.3907 9.58509C94.1062 10.137 93.9639 10.7389 93.9639 11.3908C93.9639 12.2944 94.1891 13.0542 94.6409 13.6733C95.0927 14.2924 95.8197 14.602 96.8234 14.602C98.6463 14.602 99.5577 13.7984 99.5577 12.1928Z" fill="#4F4F4F"/>
           <path d="M114.884 13.6733L116.489 15.4791C116.439 15.5291 116.302 15.6667 116.075 15.8934C115.85 16.1185 115.523 16.3624 115.096 16.6203C114.669 16.8798 114.127 17.105 113.466 17.2973C112.804 17.4896 112.015 17.5865 111.096 17.5865C109.842 17.5865 108.75 17.3145 107.822 16.772C106.893 16.2295 106.171 15.4712 105.652 14.5019C105.133 13.5326 104.875 12.4195 104.875 11.1657C104.875 10.0119 105.13 8.9707 105.639 8.04205C106.149 7.1134 106.851 6.37861 107.747 5.83455C108.641 5.29206 109.674 5.02003 110.844 5.02003C111.93 5.02003 112.842 5.21232 113.578 5.59692C114.315 5.98151 114.907 6.49586 115.359 7.13997C115.811 7.78409 116.136 8.50637 116.338 9.30995C116.538 10.112 116.639 10.9327 116.639 11.7676V12.1944H107.859C107.859 12.7635 108.022 13.2606 108.349 13.6874C108.675 14.1142 109.088 14.4488 109.59 14.6911C110.092 14.9334 110.601 15.0554 111.121 15.0554C111.89 15.0554 112.524 14.9678 113.026 14.7927C113.528 14.6176 113.93 14.4206 114.23 14.2033C114.532 13.9829 114.749 13.8078 114.884 13.6733ZM106.756 3.63956L109.365 0.0781777H112.149L114.759 3.63956H112.149L110.745 1.7338L109.366 3.63956H106.756ZM107.834 10.0619H113.603C113.603 9.66015 113.498 9.26305 113.289 8.87064C113.079 8.47823 112.775 8.15148 112.373 7.89196C111.971 7.63244 111.461 7.50268 110.842 7.50268C110.19 7.50268 109.642 7.63244 109.199 7.89196C108.755 8.15148 108.417 8.47823 108.183 8.87064C107.952 9.26305 107.834 9.66015 107.834 10.0619Z" fill="#4F4F4F"/>
@@ -35,213 +72,873 @@
           <path d="M92.6194 34.1474L93.3683 34.9369C93.0869 35.2543 92.7367 35.5122 92.3193 35.7061C91.9018 35.9015 91.425 35.9985 90.8888 35.9985C90.2071 35.9985 89.6193 35.8531 89.1237 35.5623C88.6281 35.2715 88.2451 34.8744 87.9731 34.3694C87.701 33.866 87.565 33.286 87.565 32.6325C87.565 32.015 87.7057 31.4521 87.9871 30.9425C88.2685 30.4344 88.6609 30.0279 89.1659 29.723C89.6693 29.4182 90.2446 29.2665 90.8888 29.2665C91.425 29.2665 91.8971 29.3619 92.3052 29.5526C92.7132 29.7434 93.0634 30.0029 93.3542 30.3296L92.5506 31.1066C92.3599 30.8706 92.1285 30.6845 91.8565 30.5485C91.5845 30.4125 91.2608 30.3437 90.8888 30.3437C90.4526 30.3437 90.0774 30.45 89.7647 30.6642C89.452 30.8784 89.2128 31.1567 89.0487 31.5022C88.8845 31.8477 88.8032 32.2244 88.8032 32.6325C88.8032 33.0233 88.8876 33.3939 89.0549 33.7425C89.2222 34.0927 89.4614 34.3757 89.7709 34.5945C90.0789 34.8118 90.4526 34.9213 90.8888 34.9213C91.2608 34.9213 91.5954 34.8509 91.8909 34.7102C92.1864 34.5711 92.4287 34.3835 92.6194 34.1474Z" fill="#4F4F4F"/>
           <path d="M97.2517 36C96.606 36 96.0307 35.8484 95.521 35.5435C95.0129 35.2387 94.6143 34.8306 94.3282 34.3178C94.0421 33.805 93.8983 33.2438 93.8983 32.6356C93.8983 32.0181 94.0421 31.4553 94.3282 30.9456C94.6143 30.4375 95.0114 30.031 95.521 29.7262C96.0292 29.4213 96.606 29.2697 97.2517 29.2697C97.8958 29.2697 98.4712 29.4213 98.9746 29.7262C99.478 30.031 99.8766 30.4375 100.167 30.9456C100.458 31.4537 100.604 32.0181 100.604 32.6356C100.604 33.2438 100.458 33.805 100.167 34.3178C99.8766 34.8306 99.4795 35.2402 98.9746 35.5435C98.4712 35.8484 97.8974 36 97.2517 36ZM97.2517 34.9369C97.6973 34.9369 98.0756 34.8259 98.3899 34.6024C98.7025 34.3804 98.9433 34.0911 99.1121 33.7378C99.2794 33.3829 99.3638 33.0155 99.3638 32.6341C99.3638 32.2526 99.2794 31.8852 99.1121 31.5303C98.9433 31.1754 98.701 30.8878 98.3836 30.6658C98.0662 30.4438 97.6895 30.3312 97.2533 30.3312C96.8171 30.3312 96.4403 30.4422 96.123 30.6658C95.8056 30.8878 95.5617 31.1739 95.3944 31.5241C95.2256 31.8743 95.1427 32.2448 95.1427 32.6341C95.1427 33.0155 95.2287 33.3814 95.4022 33.7315C95.5742 34.0817 95.8181 34.3694 96.1308 34.5961C96.4419 34.8244 96.8171 34.9369 97.2517 34.9369Z" fill="#4F4F4F"/>
           <path d="M101.979 35.8093V26.7213H103.205V35.8093H101.979Z" fill="#4F4F4F"/>
-          <path d="M108.874 35.8093L108.847 35.0464C108.621 35.3559 108.31 35.5889 107.914 35.7483C107.518 35.9078 107.121 35.986 106.721 35.986C106.376 35.986 106.033 35.9219 105.692 35.7952C105.352 35.6686 105.07 35.4591 104.848 35.1683C104.626 34.8775 104.514 34.4914 104.514 34.0098C104.514 33.3282 104.754 32.7841 105.236 32.3745C105.717 31.9665 106.402 31.7617 107.293 31.7617C107.493 31.7617 107.7 31.7679 107.914 31.782C108.127 31.7961 108.32 31.8086 108.492 31.8227C108.664 31.8367 108.779 31.8477 108.833 31.8571V31.6257C108.833 31.1535 108.689 30.8143 108.403 30.611C108.117 30.4062 107.73 30.3046 107.239 30.3046C106.766 30.3046 106.387 30.3703 106.1 30.5016C105.814 30.6329 105.575 30.7674 105.384 30.9034L104.812 30.0717C105.039 29.8903 105.353 29.7137 105.752 29.5401C106.152 29.3682 106.691 29.2806 107.373 29.2806C108.181 29.2806 108.822 29.4776 109.294 29.8731C109.767 30.2687 110.003 30.8299 110.003 31.5553V35.248C110.003 35.3121 110.003 35.3887 110.003 35.4794C110.003 35.5701 110.007 35.6795 110.017 35.8062H108.874V35.8093ZM108.833 33.5346V32.8123C108.788 32.7935 108.683 32.7779 108.521 32.7654C108.356 32.7513 108.174 32.7388 107.969 32.7247C107.764 32.7107 107.567 32.7044 107.376 32.7044C106.921 32.7044 106.574 32.7701 106.333 32.9014C106.093 33.0327 105.928 33.1969 105.843 33.3923C105.757 33.5877 105.713 33.78 105.713 33.9708C105.713 34.3069 105.83 34.5664 106.068 34.7478C106.304 34.9291 106.63 35.0198 107.048 35.0198C107.365 35.0198 107.659 34.9494 107.926 34.8087C108.194 34.668 108.413 34.4835 108.58 34.2569C108.749 34.0286 108.833 33.7878 108.833 33.5346Z" fill="#4F4F4F"/>
-          <path d="M112.907 35.8093H111.682V30.0873C111.682 30.0232 111.682 29.9513 111.682 29.87C111.682 29.7887 111.677 29.6574 111.668 29.4745H112.839L112.879 30.4969C112.979 30.3515 113.118 30.1921 113.295 30.0201C113.472 29.8481 113.697 29.698 113.969 29.5698C114.241 29.4432 114.568 29.3791 114.949 29.3791C115.085 29.3791 115.21 29.3885 115.324 29.4057C115.439 29.4244 115.545 29.451 115.645 29.487L115.373 30.6314C115.209 30.5673 115.001 30.536 114.746 30.536C114.4 30.536 114.089 30.6251 113.813 30.8018C113.536 30.9784 113.315 31.2129 113.151 31.5037C112.987 31.7945 112.906 32.1166 112.906 32.4715V35.8093H112.907Z" fill="#4F4F4F"/>
+          <path d="M108.874 35.8093L108.847 35.0464C108.621 35.3559 108.31 35.5889 107.914 35.7483C107.518 35.9078 107.121 35.986 106.721 35.986C106.376 35.986 106.033 35.9219 105.692 35.7952C105.352 35.6686 105.07 35.4591 104.848 35.1683C104.626 34.8775 104.514 34.4914 104.514 34.0098C104.514 33.3282 104.754 32.7841 105.236 32.3745C105.717 31.9665 106.402 31.7617 107.293 31.7617C107.493 31.7617 107.7 31.7679 107.914 31.782C108.127 31.7961 108.32 31.8086 108.492 31.8227C108.664 31.8367 108.779 31.8477 108.833 31.8571V31.6257C108.833 31.1535 108.689 30.8143 108.403 30.611C108.117 30.4062 107.73 30.3046 107.239 30.3046C106.766 30.3046 106.387 30.3703 106.1 30.5016C105.814 30.6329 105.575 30.7674 105.384 30.9034L104.812 30.0717C105.039 29.8903 105.353 29.7137 105.752 29.5401C106.152 29.3682 106.691 29.2806 107.373 29.2806C108.181 29.2806 108.822 29.4776 109.294 29.8731C109.767 30.2687 110.003 30.8299 110.003 31.5553V35.248C110.003 35.3121 110.003 35.3887 110.003 35.4794C110.003 35.5701 110.007 35.6795 110.017 35.8062H108.874V35.8093ZM108.833 33.5346V32.8123C108.788 32.7935 108.683 32.7779 108.521 32.7654C108.356 32.7513 108.174 32.7388 107.969 32.7247C107.64 32.7107 107.567 32.7044 107.376 32.7044C106.921 32.7044 106.574 32.7701 106.333 32.9014C106.093 33.0327 105.928 33.1969 105.843 33.3923C105.757 33.5877 105.713 33.78 105.713 33.9708C105.713 34.3069 105.83 34.5664 106.068 34.7478C106.304 34.9291 106.63 35.0198 107.048 35.0198C107.365 35.0198 107.659 34.9494 107.926 34.8087C108.194 34.668 108.413 34.4835 108.58 34.2569C108.749 34.0286 108.833 33.7878 108.833 33.5346Z" fill="#4F4F4F"/>
+          <path d="M112.907 35.8093H111.682V30.0873C111.682 30.0232 111.682 29.9513 111.682 29.87C111.682 29.7887 111.677 29.6574 111.68 29.4745H112.839L112.879 30.4969C112.979 30.3515 113.118 30.1921 113.295 30.0201C113.472 29.8481 113.697 29.698 113.969 29.5698C114.241 29.4432 114.568 29.3791 114.949 29.3791C115.085 29.3791 115.21 29.3885 115.324 29.4057C115.439 29.4244 115.545 29.451 115.645 29.487L115.373 30.6314C115.209 30.5673 115.001 30.536 114.746 30.536C114.4 30.536 114.089 30.6251 113.813 30.8018C113.536 30.9784 113.315 31.2129 113.151 31.5037C112.987 31.7945 112.906 32.1166 112.906 32.4715V35.8093H112.907Z" fill="#4F4F4F"/>
           <path d="M12.6712 6.3614L30.2655 24.3043L28.5583 29.4244L15.1445 15.7823L9.63356 32.3135L4.56038 32.2698L12.6712 6.3614ZM11.1407 1.19222e-06L0 35.5904L12.0505 35.6967L16.5984 22.0546L30.0122 35.6967L34.1052 23.4195L11.1407 1.19222e-06Z" fill="#307FE2"/>
           <path d="M53.4942 3.38316L58.5674 3.42693L50.4581 29.3337L32.8638 11.3908L34.571 6.27073L47.9849 19.9128L53.4942 3.38316ZM51.0788 0L46.5309 13.6421L33.1171 0L29.0242 12.2772L51.9871 35.6951L63.1278 0.10631L51.0788 0Z" fill="#F2B025"/>
         </svg>
-      </div>
+      </a>
     </div>
 
-    <!-- Usuário / Perfil -->
-    <div class="flex items-center gap-3">
-      <div class="avatar placeholder">
-        <div class="bg-amber-400 text-amber-900 rounded-lg w-9">
-          <span class="text-xs font-bold">LD</span>
-        </div>
+    <!-- Usuário / Carrinho / Ações -->
+    <div class="flex items-center gap-4">
+      <!-- Carrinho de Compras -->
+      <button onclick="showToast('Seu carrinho possui itens pendentes de finalização.', 'info')" class="btn btn-ghost btn-circle btn-sm relative text-slate-600 hover:bg-slate-100">
+        <i class="fa-solid fa-cart-shopping text-base"></i>
+        <span id="cart-badge" class="badge badge-xs badge-primary absolute top-0 right-0 hidden">0</span>
+      </button>
+
+      <!-- Notificações -->
+      <div class="dropdown dropdown-end">
+        <button tabindex="0" class="btn btn-ghost btn-circle btn-sm relative text-slate-600 hover:bg-slate-100">
+          <i class="fa-regular fa-bell text-base"></i>
+          <span class="badge badge-xs badge-error absolute top-1 right-1"></span>
+        </button>
+        <ul tabindex="0" class="dropdown-content z-[1] menu p-3 shadow-lg bg-white rounded-xl w-72 text-xs space-y-2 border border-slate-200 mt-2">
+          <li class="font-bold text-slate-800 text-sm border-b pb-2">Notificações</li>
+          <li><a class="py-2 hover:bg-blue-50 rounded">🎉 100 créditos promocionais adicionados!</a></li>
+          <li><a class="py-2 hover:bg-blue-50 rounded">🚀 Projeto "Redesign LP" concluído com sucesso.</a></li>
+        </ul>
       </div>
-      <div class="text-xs hidden sm:block">
-        <p class="font-bold text-slate-800 leading-tight">John Doe</p>
-        <p class="text-slate-400">Agência Web</p>
+
+      <!-- Avatar Usuário -->
+      <div class="flex items-center gap-3 border-l border-slate-200 pl-4">
+        <div class="avatar placeholder">
+          <div class="bg-amber-400 text-amber-900 rounded-lg w-9 font-bold shadow-inner">
+            <span class="text-xs">JD</span>
+          </div>
+        </div>
+        <div class="text-xs hidden sm:block">
+          <p class="font-bold text-slate-800 leading-tight">John Doe</p>
+          <p class="text-slate-400">Agência Web</p>
+        </div>
       </div>
     </div>
   </header>
 
-  <div class="flex flex-1">
+  <div class="flex flex-1 relative">
     <!-- Sidebar / Menu Lateral -->
-    <aside class="w-64 bg-white border-r border-slate-200 p-6 hidden lg:block flex-shrink-0">
-      <h2 class="text-lg font-bold text-slate-800 mb-6">Canal do cliente</h2>
-      
+    <aside id="sidebar" class="w-64 bg-white border-r border-slate-200 p-6 hidden lg:block flex-shrink-0 transition-all duration-300 z-30 fixed lg:static inset-y-0 left-0 shadow-lg lg:shadow-none">
+      <div class="flex items-center justify-between mb-6 lg:mb-8">
+        <h2 class="text-sm font-bold text-slate-400 uppercase tracking-wider">Canal do cliente</h2>
+        <button id="close-sidebar-btn" class="btn btn-ghost btn-xs lg:hidden text-slate-400"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
       <nav class="space-y-6 text-sm">
         <div>
           <div class="flex items-center gap-2 text-slate-500 font-medium mb-3">
             <i class="fa-solid fa-store text-slate-400"></i>
             <span>Loja de projetos</span>
           </div>
-          <ul class="pl-6 space-y-2 text-slate-600">
-            <li><a href="#" class="hover:text-blue-600 block py-1">Dashboard</a></li>
-            <li><a href="#" class="text-blue-600 font-semibold block py-1">Compra de créditos</a></li>
-            <li><a href="#" class="hover:text-blue-600 block py-1">Concluídos</a></li>
+          <ul class="pl-4 space-y-1 text-slate-600">
+            <li>
+              <a href="#" id="nav-dashboard" onclick="navigateTo('dashboard'); return false;" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-50 transition-colors nav-item-active">
+                <i class="fa-solid fa-chart-pie text-xs"></i>
+                <span>Dashboard</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" id="nav-credits" onclick="navigateTo('credits'); return false;" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-50 transition-colors">
+                <i class="fa-solid fa-coins text-xs"></i>
+                <span>Compra de créditos</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" onclick="showToast('Visualização de Projetos Concluídos em breve.', 'info'); return false;" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-50 transition-colors text-slate-500">
+                <i class="fa-solid fa-circle-check text-xs"></i>
+                <span>Concluídos</span>
+              </a>
+            </li>
           </ul>
         </div>
 
         <div>
-          <a href="#" class="flex items-center gap-2 text-slate-500 hover:text-blue-600 font-medium py-1">
+          <a href="#" onclick="showToast('Módulo de Gestão de Projetos disponível no plano Pro.', 'info'); return false;" class="flex items-center gap-2.5 text-slate-600 hover:text-blue-600 font-medium py-1.5 px-3 rounded-lg hover:bg-slate-50">
             <i class="fa-solid fa-diagram-project text-slate-400"></i>
             <span>Gestão de projetos</span>
           </a>
         </div>
 
         <div>
-          <a href="#" class="flex items-center gap-2 text-slate-500 hover:text-blue-600 font-medium py-1">
+          <a href="#" onclick="showToast('Módulo de Campanhas ativo.', 'info'); return false;" class="flex items-center gap-2.5 text-slate-600 hover:text-blue-600 font-medium py-1.5 px-3 rounded-lg hover:bg-slate-50">
             <i class="fa-solid fa-bullhorn text-slate-400"></i>
             <span>Campanhas</span>
           </a>
         </div>
       </nav>
+
+      <!-- Card Bônus / Suporte no Menu -->
+      <div class="mt-12 bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100 rounded-xl p-4 text-xs">
+        <div class="flex items-center gap-2 text-blue-700 font-bold mb-1">
+          <i class="fa-solid fa-headset"></i>
+          <span>Suporte Dedicado</span>
+        </div>
+        <p class="text-slate-500 mb-3">Precisa de ajuda para definir seus créditos?</p>
+        <button onclick="showToast('Gerente de conta John enviou uma mensagem.', 'success')" class="btn btn-sm btn-primary btn-outline w-full text-xs font-semibold">Falar com Gerente</button>
+      </div>
     </aside>
 
-    <!-- Conteúdo Principal -->
-    <main class="flex-1 p-4 md:p-8 max-w-6xl mx-auto w-full flex flex-col justify-between">
-      <div>
+    <!-- Overlay Mobile para Sidebar -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-20 hidden lg:hidden"></div>
+
+    <!-- Conteúdo Principal Dinâmico -->
+    <main class="flex-1 p-4 md:p-8 max-w-7xl mx-auto w-full flex flex-col justify-between">
+
+      <!-- ========================================== -->
+      <!-- VIEW 1: DASHBOARD                          -->
+      <!-- ========================================== -->
+      <section id="view-dashboard" class="space-y-6">
         <!-- Breadcrumbs -->
-        <div class="text-xs breadcrumbs text-slate-400 mb-2">
+        <div class="text-xs breadcrumbs text-slate-400">
           <ul>
             <li><a href="#">Loja de Projetos</a></li>
+            <li class="text-slate-600 font-medium">Dashboard</li>
+          </ul>
+        </div>
+
+        <!-- Banner de Boas-vindas & Ação Rápida -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+          <div>
+            <h1 class="text-2xl font-bold text-slate-900">Olá, John Doe 👋</h1>
+            <p class="text-xs md:text-sm text-slate-500 mt-1">Acompanhe o consumo dos seus créditos e o andamento das solicitações em tempo real.</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <button onclick="navigateTo('credits')" class="btn btn-primary bg-blue-600 hover:bg-blue-700 text-white border-none text-xs font-bold px-5 shadow-sm">
+              <i class="fa-solid fa-plus text-xs"></i> Comprar Créditos Extra
+            </button>
+            <button onclick="showToast('Abra um ticket enviando o briefing do seu projeto.', 'info')" class="btn btn-outline border-slate-300 text-slate-700 hover:bg-slate-100 text-xs font-bold px-4">
+              <i class="fa-solid fa-folder-plus text-xs"></i> Novo Projeto
+            </button>
+          </div>
+        </div>
+
+        <!-- Cards de Métricas Principais -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+
+          <!-- Card 1: Saldo de Créditos -->
+          <div class="card bg-white border border-slate-200 p-5 rounded-xl shadow-sm hover:border-blue-300 transition-colors">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Saldo Atual</span>
+              <div class="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-sm font-bold">
+                <i class="fa-solid fa-coins"></i>
+              </div>
+            </div>
+            <div class="flex items-baseline gap-2">
+              <span id="dash-credit-balance" class="text-3xl font-extrabold text-slate-900">1.450</span>
+              <span class="text-xs font-semibold text-slate-500">créditos</span>
+            </div>
+            <div class="mt-3 flex items-center justify-between text-xs text-slate-500 border-t border-slate-100 pt-3">
+              <span>Validade: <strong class="text-slate-700">24 meses</strong></span>
+              <button onclick="navigateTo('credits')" class="text-blue-600 font-bold hover:underline">Recarregar</button>
+            </div>
+          </div>
+
+          <!-- Card 2: Projetos Ativos -->
+          <div class="card bg-white border border-slate-200 p-5 rounded-xl shadow-sm hover:border-blue-300 transition-colors">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Projetos Ativos</span>
+              <div class="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-sm font-bold">
+                <i class="fa-solid fa-list-check"></i>
+              </div>
+            </div>
+            <div class="flex items-baseline gap-2">
+              <span class="text-3xl font-extrabold text-slate-900">8</span>
+              <span class="text-xs font-semibold text-emerald-600 font-bold"><i class="fa-solid fa-arrow-trend-up"></i> +2 esse mês</span>
+            </div>
+            <div class="mt-3 flex items-center justify-between text-xs text-slate-500 border-t border-slate-100 pt-3">
+              <span>Em produção: <strong class="text-slate-700">5</strong></span>
+              <span>Em revisão: <strong class="text-slate-700">3</strong></span>
+            </div>
+          </div>
+
+          <!-- Card 3: Uso no Mês -->
+          <div class="card bg-white border border-slate-200 p-5 rounded-xl shadow-sm hover:border-blue-300 transition-colors">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Uso no Mês</span>
+              <div class="w-9 h-9 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center text-sm font-bold">
+                <i class="fa-solid fa-chart-simple"></i>
+              </div>
+            </div>
+            <div class="flex items-baseline gap-2">
+              <span id="dash-monthly-used" class="text-3xl font-extrabold text-slate-900">550</span>
+              <span class="text-xs font-semibold text-slate-400">/ 2.000 lim.</span>
+            </div>
+            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden mt-3">
+              <div id="dash-used-bar" class="bg-blue-600 h-full rounded-full" style="width: 27.5%;"></div>
+            </div>
+          </div>
+
+          <!-- Card 4: Investimento -->
+          <div class="card bg-white border border-slate-200 p-5 rounded-xl shadow-sm hover:border-blue-300 transition-colors">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Investido no Mês</span>
+              <div class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-sm font-bold">
+                <i class="fa-solid fa-wallet"></i>
+              </div>
+            </div>
+            <div class="flex items-baseline gap-2">
+              <span id="dash-invested" class="text-2xl font-extrabold text-slate-900">R$ 110.000</span>
+            </div>
+            <div class="mt-3 flex items-center justify-between text-xs text-slate-500 border-t border-slate-100 pt-3">
+              <span class="text-emerald-600 font-semibold"><i class="fa-solid fa-shield-check"></i> Economia de 12%</span>
+              <span class="text-slate-400">R$ 200/crédito</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Seção de Gráficos e Histórico -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+          <!-- Gráfico de Consumo de Créditos -->
+          <div class="lg:col-span-2 card bg-white border border-slate-200 p-6 rounded-2xl shadow-sm">
+            <div class="flex items-center justify-between mb-4">
+              <div>
+                <h2 class="text-base font-bold text-slate-900">Histórico de Consumo de Créditos</h2>
+                <p class="text-xs text-slate-400">Créditos alocados em projetos nos últimos 6 meses</p>
+              </div>
+              <div class="badge badge-outline text-xs text-slate-500 font-semibold">2026</div>
+            </div>
+            <div class="h-64 relative w-full">
+              <canvas id="creditUsageChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Histórico de Transações de Crédito -->
+          <div class="card bg-white border border-slate-200 p-6 rounded-2xl shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <h2 class="text-base font-bold text-slate-900">Extrato Recente</h2>
+                <button onclick="showToast('Extrato completo gerado em PDF.', 'success')" class="text-xs text-blue-600 font-bold hover:underline">Baixar PDF</button>
+              </div>
+
+              <div id="transaction-list" class="space-y-3 custom-scrollbar max-h-64 overflow-y-auto pr-1">
+                <!-- Injetado dinamicamente via JS -->
+              </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-100">
+              <button onclick="navigateTo('credits')" class="btn btn-sm btn-block btn-ghost text-blue-600 hover:bg-blue-50 font-bold text-xs">
+                + Comprar Mais Créditos
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Tabela de Projetos Recentes -->
+        <div class="card bg-white border border-slate-200 p-6 rounded-2xl shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+            <div>
+              <h2 class="text-base font-bold text-slate-900">Projetos Recentes</h2>
+              <p class="text-xs text-slate-400">Acompanhe a alocação de créditos e status do entregável</p>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <div class="relative">
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                <input id="project-search" type="text" placeholder="Buscar projeto..." class="input input-sm input-bordered pl-8 text-xs w-48 rounded-lg focus:outline-none focus:border-blue-600" />
+              </div>
+              <button onclick="showToast('Filtro de status aplicado', 'info')" class="btn btn-sm btn-ghost border border-slate-200 text-slate-600 rounded-lg text-xs">
+                <i class="fa-solid fa-filter"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="table table-sm w-full text-xs">
+              <thead>
+                <tr class="text-slate-400 border-b border-slate-200">
+                  <th class="py-3 font-semibold">NOME DO PROJETO</th>
+                  <th class="font-semibold">TIPO</th>
+                  <th class="font-semibold">STATUS</th>
+                  <th class="font-semibold text-center">CRÉDITOS</th>
+                  <th class="font-semibold">DATA</th>
+                  <th class="text-right font-semibold">AÇÕES</th>
+                </tr>
+              </thead>
+              <tbody id="projects-table-body" class="divide-y divide-slate-100 text-slate-700">
+                <!-- Injetado dinamicamente via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ========================================== -->
+      <!-- VIEW 2: COMPRA DE CRÉDITOS                 -->
+      <!-- ========================================== -->
+      <section id="view-credits" class="space-y-6 hidden">
+        <!-- Breadcrumbs -->
+        <div class="text-xs breadcrumbs text-slate-400">
+          <ul>
+            <li><a href="#" onclick="navigateTo('dashboard'); return false;">Loja de Projetos</a></li>
             <li><a href="#">Comprar Créditos</a></li>
             <li class="text-slate-600 font-medium">Compra de créditos</li>
           </ul>
         </div>
 
         <!-- Título da Página -->
-        <h1 class="text-2xl font-bold text-slate-900 mb-6">Compra de pontos base</h1>
+        <div class="flex items-center justify-between">
+          <h1 class="text-2xl font-bold text-slate-900">Compra de pontos base</h1>
+          <span class="badge badge-primary bg-blue-100 text-blue-700 border-none font-semibold text-xs py-2 px-3">
+            <i class="fa-solid fa-bolt mr-1"></i> Liberação Imediata via PIX
+          </span>
+        </div>
 
         <!-- Cards Superiores: Limite Mensal e Informações -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
           <!-- Card Limite Mensal -->
-          <div class="card bg-slate-50 border border-slate-200 p-6 rounded-xl shadow-sm">
-            <h2 class="text-base font-bold text-slate-800 mb-1">Limite mensal</h2>
-            <p class="text-xs text-slate-500 mb-6">Confira a quantidade de pontos disponível para compra</p>
-            
-            <!-- Barra de Progresso Customizada -->
-            <div class="w-full bg-slate-200 h-3 rounded-full overflow-hidden mb-3 relative flex">
-              <div class="bg-blue-600 h-full" style="width: 25%;"></div>
-              <div class="bg-sky-400 h-full" style="width: 10%;"></div>
+          <div class="card bg-slate-50 border border-slate-200 p-6 rounded-xl shadow-sm justify-between">
+            <div>
+              <h2 class="text-base font-bold text-slate-800 mb-1">Limite mensal</h2>
+              <p class="text-xs text-slate-500 mb-6">Confira a quantidade de pontos disponível para compra neste ciclo</p>
+
+              <!-- Barra de Progresso Customizada -->
+              <div class="w-full bg-slate-200 h-3 rounded-full overflow-hidden mb-3 relative flex">
+                <div id="credit-limit-progress" class="bg-blue-600 h-full transition-all duration-300" style="width: 5%;"></div>
+                <div id="credit-limit-simulated" class="bg-sky-400 h-full opacity-60 transition-all duration-300" style="width: 5%;"></div>
+              </div>
+
+              <div class="flex justify-between items-center text-xs">
+                <div>
+                  <span class="text-slate-400 block">Comprado esse mês</span>
+                  <span id="label-bought-month" class="font-bold text-slate-800">100 créditos</span>
+                </div>
+                <div class="text-right">
+                  <span class="text-slate-400 block">Seu limite mensal</span>
+                  <span class="font-bold text-slate-800">2.000 créditos</span>
+                </div>
+              </div>
             </div>
 
-            <div class="flex justify-between items-center text-xs">
-              <div>
-                <span class="text-slate-400 block">Comprado esse mês</span>
-                <span class="font-bold text-slate-800">100 créditos</span>
-              </div>
-              <div class="text-right">
-                <span class="text-slate-400 block">Seu limite mensal</span>
-                <span class="font-bold text-slate-800">2.000 créditos</span>
-              </div>
+            <div class="mt-4 pt-3 border-t border-slate-200/60 flex items-center text-xs text-slate-500 gap-2">
+              <i class="fa-solid fa-circle-info text-blue-500"></i>
+              <span>O limite renova automaticamente dia 1º do próximo mês.</span>
             </div>
           </div>
 
           <!-- Card Informações -->
           <div class="card bg-slate-50 border border-slate-200 p-6 rounded-xl shadow-sm justify-center space-y-4">
-            <h2 class="text-base font-bold text-slate-800 mb-1">Informações</h2>
+            <h2 class="text-base font-bold text-slate-800 mb-1">Informações do Pacote</h2>
 
             <div class="flex items-center gap-3 text-sm text-slate-700">
-              <i class="fa-regular fa-credit-card text-blue-600 text-base"></i>
+              <div class="w-8 h-8 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center">
+                <i class="fa-regular fa-credit-card text-base"></i>
+              </div>
               <span>Valor mínimo de <strong class="font-bold text-slate-900">100 créditos</strong></span>
             </div>
 
             <div class="flex items-center gap-3 text-sm text-slate-700">
-              <i class="fa-regular fa-calendar-days text-blue-600 text-base"></i>
-              <span>Validade <strong class="font-bold text-slate-900">24 meses</strong></span>
+              <div class="w-8 h-8 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center">
+                <i class="fa-regular fa-calendar-days text-base"></i>
+              </div>
+              <span>Validade extendida de <strong class="font-bold text-slate-900">24 meses</strong></span>
             </div>
 
             <div class="flex items-center gap-3 text-sm text-slate-700">
-              <i class="fa-solid fa-wand-magic-sparkles text-blue-600 text-base"></i>
-              <span>Limite de compra mensal <strong class="font-bold text-slate-900">2.000 créditos</strong></span>
+              <div class="w-8 h-8 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center">
+                <i class="fa-solid fa-wand-magic-sparkles text-base"></i>
+              </div>
+              <span>Limite máximo mensal de <strong class="font-bold text-slate-900">2.000 créditos</strong></span>
             </div>
           </div>
 
         </div>
 
         <!-- Card de Seleção de Quantidade e Valor -->
-        <div class="card bg-slate-50 border border-slate-200 p-6 rounded-xl shadow-sm mb-6">
+        <div class="card bg-slate-50 border border-slate-200 p-6 rounded-xl shadow-sm">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-            
+
             <!-- Contador de Créditos -->
             <div>
-              <label class="block text-sm font-bold text-slate-800 mb-4">Quantidade de créditos para compra</label>
-              <div class="flex items-center gap-4">
+              <label class="block text-sm font-bold text-slate-800 mb-3">Quantidade de créditos para compra</label>
+
+              <!-- Atalhos de seleção rápida -->
+              <div class="flex items-center gap-2 mb-4">
+                <button onclick="setCreditValue(100)" class="btn btn-xs btn-outline border-slate-300 text-slate-600 hover:bg-blue-50 hover:border-blue-600 hover:text-blue-600">100</button>
+                <button onclick="setCreditValue(250)" class="btn btn-xs btn-outline border-slate-300 text-slate-600 hover:bg-blue-50 hover:border-blue-600 hover:text-blue-600">250</button>
+                <button onclick="setCreditValue(500)" class="btn btn-xs btn-outline border-slate-300 text-slate-600 hover:bg-blue-50 hover:border-blue-600 hover:text-blue-600">500</button>
+                <button onclick="setCreditValue(1000)" class="btn btn-xs btn-outline border-slate-300 text-slate-600 hover:bg-blue-50 hover:border-blue-600 hover:text-blue-600">1.000</button>
+              </div>
+
+              <div class="flex items-center gap-4 bg-white p-3 rounded-xl border border-slate-200 w-fit">
                 <button id="btn-decrement" type="button" class="btn btn-circle btn-outline btn-sm border-blue-600 text-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-white">
                   <i class="fa-solid fa-minus"></i>
                 </button>
-                <input id="credit-input" type="number" value="100" min="100" step="100" class="text-2xl font-bold text-slate-900 w-24 text-center bg-transparent focus:outline-none" />
+                <input id="credit-input" type="number" value="100" min="100" step="100" class="text-2xl font-bold text-slate-900 w-28 text-center bg-transparent focus:outline-none" />
                 <button id="btn-increment" type="button" class="btn btn-circle btn-outline btn-sm border-blue-600 text-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-white">
                   <i class="fa-solid fa-plus"></i>
                 </button>
               </div>
-              <p class="text-xs text-slate-400 mt-3">Digite o valor aproximado</p>
+              <p class="text-xs text-slate-400 mt-3">Múltiplos de 100. Insira o valor desejado para calcular.</p>
             </div>
 
-            <!-- Valor Total -->
-            <div>
-              <span class="block text-sm font-bold text-slate-800 mb-2">Total em reais</span>
-              <p id="total-price" class="text-3xl font-black text-slate-900">R$20.000,00</p>
+            <!-- Valor Total em Reais -->
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-center">
+              <span class="block text-xs uppercase tracking-wider font-bold text-slate-400 mb-1">Total a Pagar em Reais</span>
+              <p id="total-price" class="text-3xl md:text-4xl font-black text-slate-900">R$ 20.000,00</p>
+
+              <div class="mt-3 flex items-center gap-2 text-xs text-slate-500">
+                <span class="badge badge-sm badge-success text-white">Sem juros</span>
+                <span>Até 12x de <strong id="installment-price" class="text-slate-800">R$ 1.666,66</strong> no cartão</span>
+              </div>
             </div>
 
           </div>
         </div>
 
         <!-- Sanfona / Mais Informações -->
-        <div class="border-t border-slate-200 pt-4 mb-8">
-          <div class="collapse collapse-arrow">
-            <input type="checkbox" class="peer" /> 
-            <div class="collapse-title text-sm font-bold text-slate-800 px-0 flex items-center">
-              Mais informações sobre o produto
+        <div class="border-t border-slate-200 pt-4">
+          <div class="collapse collapse-arrow bg-white border border-slate-200 rounded-xl">
+            <input type="checkbox" class="peer" />
+            <div class="collapse-title text-sm font-bold text-slate-800 px-6 flex items-center">
+              <i class="fa-solid fa-circle-question text-blue-600 mr-2"></i> Mais informações sobre a transferência e regras dos pontos
             </div>
-            <div class="collapse-content px-0 text-xs text-slate-500 leading-relaxed space-y-2">
+            <div class="collapse-content px-6 text-xs text-slate-500 leading-relaxed space-y-3">
               <p><strong class="font-bold text-slate-700">ATENÇÃO:</strong> A transferência dos pontos comprados para programas parceiros (Milhas) depende da elegibilidade do seu cartão de crédito. Consulte os cartões elegíveis na página do produto a partir do menu Viagens - Programas Parceiros.</p>
+              <p>Os pontos acumulados não expiram durante a vigência do contrato com a AgênciaWeb e podem ser resgatados em serviços de desenvolvimento, mídia ou cashback corporativo.</p>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Rodapé de Ações / Botões -->
-      <div class="border-t border-slate-200 pt-6 mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <a href="#" class="text-blue-600 font-bold hover:underline text-sm order-2 sm:order-1">Voltar</a>
-        
-        <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto order-1 sm:order-2">
-          <button type="button" class="btn border-blue-600 text-blue-600 hover:bg-blue-50 hover:border-blue-700 bg-white w-full sm:w-auto px-6 font-semibold">
-            Adicionar ao carrinho
-          </button>
-          <button type="button" class="btn bg-blue-700 hover:bg-blue-800 text-white border-none w-full sm:w-auto px-8 font-semibold">
-            Continuar <i class="fa-solid fa-arrow-right ml-1"></i>
-          </button>
+        <!-- Rodapé de Ações / Botões -->
+        <div class="border-t border-slate-200 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <a href="#" onclick="navigateTo('dashboard'); return false;" class="text-blue-600 font-bold hover:underline text-sm order-2 sm:order-1 flex items-center gap-2">
+            <i class="fa-solid fa-arrow-left"></i> Voltar ao Dashboard
+          </a>
+
+          <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto order-1 sm:order-2">
+            <button id="btn-add-cart" type="button" class="btn border-blue-600 text-blue-600 hover:bg-blue-50 hover:border-blue-700 bg-white w-full sm:w-auto px-6 font-semibold text-xs">
+              Adicionar ao carrinho
+            </button>
+            <button id="btn-continue" type="button" class="btn bg-blue-600 hover:bg-blue-700 text-white border-none w-full sm:w-auto px-8 font-semibold text-xs shadow-md">
+              Continuar para Pagamento <i class="fa-solid fa-arrow-right ml-1"></i>
+            </button>
+          </div>
         </div>
-      </div>
+      </section>
 
     </main>
   </div>
 
-  <!-- Lógica para Quantidade e Valor -->
+  <!-- MODAL DE CHECKOUT / CONFIRMAÇÃO DE COMPRA -->
+  <dialog id="checkout_modal" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box bg-white text-slate-800 border border-slate-200">
+      <h3 class="font-bold text-lg text-slate-900 border-b pb-3 flex items-center justify-between">
+        <span>Confirmação do Pedido</span>
+        <form method="dialog">
+          <button class="btn btn-sm btn-circle btn-ghost text-slate-400"><i class="fa-solid fa-xmark"></i></button>
+        </form>
+      </h3>
+
+      <div class="py-4 space-y-4">
+        <div class="bg-blue-50 p-4 rounded-xl text-xs space-y-2 border border-blue-100">
+          <div class="flex justify-between">
+            <span class="text-slate-500">Quantidade de Créditos:</span>
+            <strong id="modal-credit-qty" class="text-slate-900 font-bold">100 créditos</strong>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-500">Valor Unitário:</span>
+            <span class="text-slate-700">R$ 200,00</span>
+          </div>
+          <div class="flex justify-between text-sm pt-2 border-t border-blue-200/60 font-bold">
+            <span class="text-slate-900">Total a Pagar:</span>
+            <span id="modal-total-price" class="text-blue-700">R$ 20.000,00</span>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-2">Forma de Pagamento</label>
+          <div class="grid grid-cols-3 gap-2">
+            <label class="cursor-pointer border border-blue-600 bg-blue-50/50 p-3 rounded-xl flex flex-col items-center justify-center text-center">
+              <input type="radio" name="payment-method" checked class="radio radio-xs radio-primary mb-1" />
+              <i class="fa-solid fa-qrcode text-lg text-blue-600 my-1"></i>
+              <span class="text-[11px] font-bold text-slate-800">PIX (Instantâneo)</span>
+            </label>
+            <label class="cursor-pointer border border-slate-200 hover:border-slate-300 p-3 rounded-xl flex flex-col items-center justify-center text-center">
+              <input type="radio" name="payment-method" class="radio radio-xs radio-primary mb-1" />
+              <i class="fa-solid fa-credit-card text-lg text-slate-600 my-1"></i>
+              <span class="text-[11px] font-bold text-slate-800">Cartão de Crédito</span>
+            </label>
+            <label class="cursor-pointer border border-slate-200 hover:border-slate-300 p-3 rounded-xl flex flex-col items-center justify-center text-center">
+              <input type="radio" name="payment-method" class="radio radio-xs radio-primary mb-1" />
+              <i class="fa-solid fa-barcode text-lg text-slate-600 my-1"></i>
+              <span class="text-[11px] font-bold text-slate-800">Boleto Bancário</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-action border-t pt-3">
+        <form method="dialog" class="flex gap-2 w-full justify-end">
+          <button class="btn btn-ghost text-xs">Cancelar</button>
+          <button id="btn-confirm-purchase" type="button" class="btn btn-primary bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-6">
+            <i class="fa-solid fa-check"></i> Finalizar Compra
+          </button>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- CONTAINER DE TOASTS DEDICADO -->
+  <div id="toast-container" class="toast toast-end toast-bottom z-50"></div>
+
   <script>
-    const PRICE_PER_CREDIT = 200; // R$ 200,00 por crédito
+    // ESTADO DA APLICAÇÃO (SPA)
+    const state = {
+      credits: 1450,
+      monthlyLimit: 2000,
+      monthlyUsed: 550,
+      boughtThisMonth: 100,
+      cartItemsCount: 0,
+      currentView: 'dashboard',
+      pricePerCredit: 200,
+
+      // Lista de Transações
+      transactions: [
+        { id: 1, type: 'credit', title: 'Compra de Créditos (PIX)', amount: +100, date: 'Hoje, 10:14', icon: 'fa-plus text-emerald-500' },
+        { id: 2, type: 'debit', title: 'Redesign Landing Page', amount: -250, date: 'Ontem, 16:30', icon: 'fa-minus text-slate-400' },
+        { id: 3, type: 'debit', title: 'Campanha Google Ads Q3', amount: -300, date: '24 Set, 11:20', icon: 'fa-minus text-slate-400' },
+        { id: 4, type: 'credit', title: 'Bônus de Fidelidade', amount: +100, date: '01 Set, 09:00', icon: 'fa-gift text-blue-500' },
+      ],
+
+      // Lista de Projetos
+      projects: [
+        { id: 'PRJ-101', name: 'Redesign E-commerce B2B', type: 'UI/UX Design', status: 'Em andamento', credits: 400, date: '28/09/2026', badgeClass: 'badge-warning text-amber-800' },
+        { id: 'PRJ-102', name: 'Campanha Google Ads Q3', type: 'Gestão de Mídia', status: 'Em andamento', credits: 300, date: '22/09/2026', badgeClass: 'badge-warning text-amber-800' },
+        { id: 'PRJ-103', name: 'Landing Page Black Friday', type: 'Desenvolvimento Web', status: 'Em revisão', credits: 200, date: '18/09/2026', badgeClass: 'badge-info text-blue-800' },
+        { id: 'PRJ-104', name: 'Automação CRM HubSpot', type: 'Integração', status: 'Concluído', credits: 150, date: '10/09/2026', badgeClass: 'badge-success text-emerald-800' },
+        { id: 'PRJ-105', name: 'App Mobile iOS MVP', type: 'Mobile', status: 'Concluído', credits: 600, date: '02/09/2026', badgeClass: 'badge-success text-emerald-800' }
+      ]
+    };
+
+    let chartInstance = null;
+
+    // NAVEGAÇÃO ENTRE TELAS
+    function navigateTo(viewName) {
+      state.currentView = viewName;
+
+      const viewDashboard = document.getElementById('view-dashboard');
+      const viewCredits = document.getElementById('view-credits');
+      const navDashboard = document.getElementById('nav-dashboard');
+      const navCredits = document.getElementById('nav-credits');
+
+      if (viewName === 'dashboard') {
+        viewDashboard.classList.remove('hidden');
+        viewCredits.classList.add('hidden');
+
+        navDashboard.classList.add('nav-item-active');
+        navCredits.classList.remove('nav-item-active');
+
+        renderDashboard();
+      } else if (viewName === 'credits') {
+        viewDashboard.classList.add('hidden');
+        viewCredits.classList.remove('hidden');
+
+        navCredits.classList.add('nav-item-active');
+        navDashboard.classList.remove('nav-item-active');
+
+        updateCreditCalculator();
+      }
+
+      // Fecha sidebar no mobile ao navegar
+      closeMobileSidebar();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // CALCULADORA DE CRÉDITOS
     const creditInput = document.getElementById('credit-input');
-    const totalPrice = document.getElementById('total-price');
+    const totalPriceEl = document.getElementById('total-price');
+    const installmentPriceEl = document.getElementById('installment-price');
     const btnIncrement = document.getElementById('btn-increment');
     const btnDecrement = document.getElementById('btn-decrement');
+    const progressBought = document.getElementById('credit-limit-progress');
+    const progressSimulated = document.getElementById('credit-limit-simulated');
+    const labelBoughtMonth = document.getElementById('label-bought-month');
 
-    function updateTotal() {
-      let value = parseInt(creditInput.value) || 0;
-      if (value < 100) value = 100;
-      const total = value * PRICE_PER_CREDIT;
-      totalPrice.textContent = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    function updateCreditCalculator() {
+      let qty = parseInt(creditInput.value) || 0;
+      if (qty < 100) qty = 100;
+
+      const total = qty * state.pricePerCredit;
+      const installment = total / 12;
+
+      totalPriceEl.textContent = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+      installmentPriceEl.textContent = installment.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+      // Atualiza visualização de limite
+      const currentPct = (state.boughtThisMonth / state.monthlyLimit) * 100;
+      const simPct = (qty / state.monthlyLimit) * 100;
+
+      if (progressBought) progressBought.style.width = `${Math.min(currentPct, 100)}%`;
+      if (progressSimulated) progressSimulated.style.width = `${Math.min(simPct, 100 - currentPct)}%`;
+      if (labelBoughtMonth) labelBoughtMonth.textContent = `${state.boughtThisMonth} créditos`;
+    }
+
+    function setCreditValue(val) {
+      creditInput.value = val;
+      updateCreditCalculator();
     }
 
     btnIncrement.addEventListener('click', () => {
       creditInput.value = (parseInt(creditInput.value) || 0) + 100;
-      updateTotal();
+      updateCreditCalculator();
     });
 
     btnDecrement.addEventListener('click', () => {
       let current = parseInt(creditInput.value) || 0;
       if (current > 100) {
         creditInput.value = current - 100;
-        updateTotal();
+        updateCreditCalculator();
       }
     });
 
-    creditInput.addEventListener('input', updateTotal);
+    creditInput.addEventListener('input', updateCreditCalculator);
+
+    // RENDERIZAÇÃO DO DASHBOARD
+    function renderDashboard() {
+      // Atualiza contadores
+      document.getElementById('dash-credit-balance').textContent = state.credits.toLocaleString('pt-BR');
+      document.getElementById('dash-monthly-used').textContent = state.monthlyUsed;
+
+      const usedPct = (state.monthlyUsed / state.monthlyLimit) * 100;
+      document.getElementById('dash-used-bar').style.width = `${usedPct}%`;
+
+      const investedVal = state.monthlyUsed * state.pricePerCredit;
+      document.getElementById('dash-invested').textContent = investedVal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
+
+      // Renderiza Extrato
+      renderTransactions();
+
+      // Renderiza Tabela de Projetos
+      renderProjects();
+
+      // Renderiza ou Atualiza Gráfico
+      renderChart();
+    }
+
+    function renderTransactions() {
+      const listContainer = document.getElementById('transaction-list');
+      listContainer.innerHTML = '';
+
+      state.transactions.forEach(t => {
+        const isCredit = t.amount > 0;
+        const item = document.createElement('div');
+        item.className = 'flex items-center justify-between p-2.5 rounded-xl hover:bg-slate-50 transition-colors text-xs border border-slate-100';
+        item.innerHTML = `
+          <div class="flex items-center gap-3">
+            <div class="w-7 h-7 rounded-lg ${isCredit ? 'bg-emerald-50 text-emerald-600' : 'bg-slate-100 text-slate-500'} flex items-center justify-center font-bold">
+              <i class="fa-solid ${t.icon}"></i>
+            </div>
+            <div>
+              <p class="font-bold text-slate-800">${t.title}</p>
+              <p class="text-[10px] text-slate-400">${t.date}</p>
+            </div>
+          </div>
+          <span class="font-extrabold ${isCredit ? 'text-emerald-600' : 'text-slate-700'}">
+            ${isCredit ? '+' : ''}${t.amount} pts
+          </span>
+        `;
+        listContainer.appendChild(item);
+      });
+    }
+
+    function renderProjects(filterText = '') {
+      const tbody = document.getElementById('projects-table-body');
+      tbody.innerHTML = '';
+
+      const filtered = state.projects.filter(p =>
+        p.name.toLowerCase().includes(filterText.toLowerCase()) ||
+        p.type.toLowerCase().includes(filterText.toLowerCase())
+      );
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" class="text-center py-6 text-slate-400">Nenhum projeto encontrado</td></tr>`;
+        return;
+      }
+
+      filtered.forEach(p => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50/80 transition-colors';
+        tr.innerHTML = `
+          <td class="py-3 font-bold text-slate-800">${p.name}</td>
+          <td class="text-slate-500">${p.type}</td>
+          <td><span class="badge ${p.badgeClass} badge-sm font-semibold border-none">${p.status}</span></td>
+          <td class="text-center font-extrabold text-slate-900">${p.credits}</td>
+          <td class="text-slate-400">${p.date}</td>
+          <td class="text-right">
+            <button onclick="showToast('Abrindo detalhes do projeto ${p.id}', 'info')" class="btn btn-ghost btn-xs text-blue-600 hover:bg-blue-50">
+              Ver Detalhes
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    document.getElementById('project-search').addEventListener('input', (e) => {
+      renderProjects(e.target.value);
+    });
+
+    // GRÁFICO CHART.JS
+    function renderChart() {
+      const ctx = document.getElementById('creditUsageChart').getContext('2d');
+
+      if (chartInstance) {
+        chartInstance.destroy();
+      }
+
+      chartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro'],
+          datasets: [
+            {
+              label: 'Créditos Utilizados',
+              data: [320, 450, 600, 410, 780, state.monthlyUsed],
+              backgroundColor: '#2563eb',
+              borderRadius: 6,
+              barThickness: 20
+            },
+            {
+              label: 'Créditos Adquiridos',
+              data: [400, 500, 600, 500, 800, 1000],
+              backgroundColor: '#93c5fd',
+              borderRadius: 6,
+              barThickness: 20
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { font: { family: 'Inter', size: 11 }, boxWidth: 12 }
+            },
+            tooltip: {
+              padding: 10,
+              titleFont: { family: 'Inter', size: 12, weight: 'bold' },
+              bodyFont: { family: 'Inter', size: 11 }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              grid: { color: '#f1f5f9' },
+              ticks: { font: { family: 'Inter', size: 10 }, color: '#94a3b8' }
+            },
+            x: {
+              grid: { display: false },
+              ticks: { font: { family: 'Inter', size: 10 }, color: '#94a3b8' }
+            }
+          }
+        }
+      });
+    }
+
+    // MODAL DE CHECKOUT & ADICIONAR AO CARRINHO
+    const checkoutModal = document.getElementById('checkout_modal');
+    const btnContinue = document.getElementById('btn-continue');
+    const btnAddCart = document.getElementById('btn-add-cart');
+    const btnConfirmPurchase = document.getElementById('btn-confirm-purchase');
+
+    btnContinue.addEventListener('click', () => {
+      const qty = parseInt(creditInput.value) || 100;
+      const total = qty * state.pricePerCredit;
+
+      document.getElementById('modal-credit-qty').textContent = `${qty} créditos`;
+      document.getElementById('modal-total-price').textContent = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+      checkoutModal.showModal();
+    });
+
+    btnAddCart.addEventListener('click', () => {
+      state.cartItemsCount++;
+      const cartBadge = document.getElementById('cart-badge');
+      cartBadge.textContent = state.cartItemsCount;
+      cartBadge.classList.remove('hidden');
+
+      showToast('Pacote de créditos adicionado ao carrinho!', 'success');
+    });
+
+    btnConfirmPurchase.addEventListener('click', () => {
+      const qty = parseInt(creditInput.value) || 100;
+
+      // Atualiza estado global de créditos
+      state.credits += qty;
+      state.boughtThisMonth += qty;
+
+      // Adiciona no histórico de transações
+      state.transactions.unshift({
+        id: Date.now(),
+        type: 'credit',
+        title: 'Compra de Créditos (PIX)',
+        amount: +qty,
+        date: 'Agora mesmo',
+        icon: 'fa-plus text-emerald-500'
+      });
+
+      checkoutModal.close();
+      showToast(`Sucesso! ${qty} créditos foram adicionados à sua conta.`, 'success');
+
+      // Redireciona para o Dashboard para ver o novo saldo atualizado!
+      setTimeout(() => {
+        navigateTo('dashboard');
+      }, 500);
+    });
+
+    // SISTEMA DE TOAST NOTIFICATION
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+
+      const bgClass = type === 'success' ? 'alert-success text-white' : type === 'error' ? 'alert-error text-white' : 'alert-info text-white bg-blue-600';
+      const icon = type === 'success' ? 'fa-circle-check' : 'fa-circle-info';
+
+      toast.className = `alert ${bgClass} shadow-lg text-xs py-3 px-4 flex items-center gap-2 rounded-xl border-none animate-bounce-short`;
+      toast.innerHTML = `
+        <i class="fa-solid ${icon}"></i>
+        <span>${message}</span>
+      `;
+
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.remove();
+      }, 3500);
+    }
+
+    // CONTROLE SIDEBAR MOBILE
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const closeSidebarBtn = document.getElementById('close-sidebar-btn');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+    function openMobileSidebar() {
+      sidebar.classList.remove('hidden');
+      sidebarOverlay.classList.remove('hidden');
+    }
+
+    function closeMobileSidebar() {
+      if (window.innerWidth < 1024) {
+        sidebar.classList.add('hidden');
+        sidebarOverlay.classList.add('hidden');
+      }
+    }
+
+    mobileMenuBtn.addEventListener('click', openMobileSidebar);
+    closeSidebarBtn.addEventListener('click', closeMobileSidebar);
+    sidebarOverlay.addEventListener('click', closeMobileSidebar);
+
+    // INICIALIZAÇÃO NO CARREGAMENTO
+    window.onload = function () {
+      navigateTo('dashboard');
+    };
   </script>
 </body>
 </html>
