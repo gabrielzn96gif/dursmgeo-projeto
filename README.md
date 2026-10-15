@@ -1,8 +1,7 @@
-Aqui está o **Diário de Bordo** final ajustado com o nome da disciplina e da sua equipe:
 
----
 
-# 📖 Diário de Bordo do Projeto
+
+# Diário de Bordo do Projeto
 
 **Curso / Disciplina:** Design Web
 
