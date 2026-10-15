@@ -1,10 +1,16 @@
-#  Diário de Bordo do Projeto
+Aqui está o **Diário de Bordo** final ajustado com o nome da disciplina e da sua equipe:
 
-**Curso / Disciplina:** design web
+---
+
+# 📖 Diário de Bordo do Projeto
+
+**Curso / Disciplina:** Design Web
+
+**Equipe:** Durmsgeo
 
 **Projeto:** Desenvolvimento do Site da Olimpíada
 
-**Data de Entrega / Atualização:** 15 de Outubro de 2026
+**Data de Entrega:** 15 de Outubro de 2026
 
 ---
 
@@ -19,32 +25,31 @@
 
 ---
 
-### 2. Relato de Acompanhamento e Participação do Grupo
+### 2. Relato de Acompanhamento e Dinâmica da Equipe
 
-Durante o ciclo de desenvolvimento do projeto, a divisão prática das tarefas e o engajamento dos membros ocorreram da seguinte forma:
+Gostaríamos de detalhar a condução das tarefas e a participação de cada membro durante o projeto:
 
-* **Felipe Silva, Anne e Luiz Guilherme Pereira:** Assumiram o papel central na execução, desenvolvimento das funcionalidades, estruturação das páginas e organização das entregas do projeto.
-* **Vitor Gabriel:** Participou parcialmente do desenvolvimento, prestando suporte em tarefas pontuais da execução.
-* **Rafael Philipe e Sergio Arthur:** Não registraram participação efetiva na construção técnica ou na entrega do trabalho neste período.
+* **Execução e Aguardo das Tarefas:** A divisão inicial previa que cada integrante desenvolvesse a sua parte da aplicação. Os alunos **Felipe Silva, Anne e Luiz Guilherme Pereira** concluíram suas respectivas atribuições por completo, e **Vitor Gabriel** realizou uma contribuição parcial.
+* **Ausência de Entregas:** Após finalizarem suas responsabilidades, os membros que estavam produzindo aguardaram o envio das partes sob responsabilidade dos demais integrantes (**Rafael Philipe e Sergio Arthur**). Como não houve o envio do material por parte deles dentro do prazo estipulado, o grupo limitou-se a integrar e entregar o projeto contendo apenas os módulos efetivamente desenvolvidos por quem participou.
 
 ---
 
-### 3. Relato Técnico e Gestão de Código (Git / Repositório)
+### 3. Relato Técnico e Gestão do Código (Git / Repositório)
 
-Registramos uma observação importante em relação ao histórico de *commits* e *merges* no repositório do projeto:
+Registramos uma observação importante em relação ao histórico de *commits* e *merges* no repositório:
 
-* Enfrentamos dificuldades técnicas e conflitos no ambiente de versionamento (*Git*) ao tentar sincronizar as alterações de múltiplas máquinas.
-* Para evitar a perda de código, quebra do projeto e resolver conflitos de integração a tempo do prazo final, **optamos por centralizar a consolidação do código, os commits finais e o processo de *merge* em uma única máquina**.
-* Por essa razão, a maior parte do histórico final de *commits* no repositório remoto estará centralizada em um único usuário/máquina, embora o desenvolvimento tenha contado com o esforço conjunto dos integrantes citados acima.
+* Enfrentamos problemas técnicos e conflitos de versionamento no *Git* ao tentar sincronizar e juntar as alterações a partir de diferentes computadores.
+* Para evitar a perda de dados e garantir a integração final do sistema sem quebras, **fomos forçados a centralizar a realização dos *commits* e *merges* finais em uma única máquina**.
+* Dessa forma, o histórico de *commits* no repositório aparecerá concentrado em um único usuário/dispositivo, embora o desenvolvimento das partes entregues tenha sido distribuído entre os membros citados.
 
 ---
 
 ### 4. Considerações Finais
 
-O projeto foi finalizado garantindo o funcionamento das telas e requisitos solicitados. Permanecemos à disposição para eventuais esclarecimentos sobre a estrutura do código ou sobre a dinâmica do grupo.
+O projeto é entregue com as funcionalidades desenvolvidas e validadas pela equipe atuante. Ficamos à disposição para prestar quaisquer esclarecimentos adicionais sobre o código ou a dinamização do grupo.
 
 Atenciosamente,
 
-**Equipe durmsgeo**
+**Equipe Durmsgeo**
 
 ---
