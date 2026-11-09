@@ -20,6 +20,9 @@ O objetivo é facilitar o acesso à informação, conscientizar a população e 
 
 ### 4. Turmas envolvidas
 - **InfoWeb 2V:** desenvolvimento do site, organização das páginas, gráficos, mapas e funcionalidades.
+- 
+- Felipe silva pereira dos santos, Anny Beatriz acioly pimenta, Luiz guilherme pereira de vasconcelos lima, Vitor gabriel da silva barbosa, Rafael philipe dos santos silva
+- 
 - **Comércio 2M:** análise de custos, matemática financeira, organização das informações e avaliação da viabilidade da proposta.
 
 ### 5. Objetivo do projeto
